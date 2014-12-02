@@ -13,4 +13,4 @@ This repository contains my notes from working through [Practical Object Oriente
   [1]: http://www.amazon.com/Practical-Object-Oriented-Design-Ruby-Addison-Wesley/dp/0321721330/ref=sr_1_1?ie=UTF8&qid=1416325155&sr=8-1&keywords=practical+object-oriented+design+in+ruby
   [2]: https://github.com/abitdodgy/book-notes-poodr/wiki/2.-Designing-Classes-with-a-Single-Responsibility
   [3]: https://github.com/abitdodgy/book-notes-poodr/wiki/3.-Managing-Dependencies
-  [4] https://github.com/abitdodgy/book-notes-poodr/wiki/4.-Creating-Flexible-Interfaces
+  [4]: https://github.com/abitdodgy/book-notes-poodr/wiki/4.-Creating-Flexible-Interfaces
