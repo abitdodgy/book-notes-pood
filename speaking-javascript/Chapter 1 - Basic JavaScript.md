@@ -1,6 +1,6 @@
-Chapter 1 - Basic JavaScript
+### Chapter 1 - Basic JavaScript
 
-Some useful things to remember from this chapter:
+Some useful things to remember from this chapter.
 
 * JavaScript syntax is mostly made up of *expressions* and *statements*. Statements do things and expressions produce values.
 
@@ -83,7 +83,7 @@ Some useful things to remember from this chapter:
   'object'
   ````
   
-* `instanceof` used for objects. It returns true if value is an object that has been created by the constructor `Constr`.
+  `instanceof` used for objects. It returns true if value is an object that has been created by the constructor `Constr`.
 
   ````javascript
   // value instance Constr
@@ -93,7 +93,8 @@ Some useful things to remember from this chapter:
   [] instanceof Array;
   true
   ````
-* Any value can be used whenever JavaScript expects a boolean value. Other than the values considered `false`, described above, everything else is considered `true`. Values can be cooerced into boolean.
+
+  Any value can be used whenever JavaScript expects a boolean value. Other than the values considered `false`, described above, everything else is considered `true`. Values can be cooerced into boolean.
 
   ````javascript
   Boolean(0);
@@ -111,4 +112,47 @@ Some useful things to remember from this chapter:
   ````
   
 * `Infinity` is used as an error value. `Infinity` is larger than all numbers except `NaN`, and `-Infinity` is smaller than all numbers except `NaN`. This makes it useful for setting minimum and maximum values.
+
+* Function expressions are functions declared as a variables, or passed as arguments. Function expressions produce a value, and so can be passed as arguments.
+
+  ````javascript
+  var greet = function (name) {
+    return "Hello, " + name;
+  };
+
+  function one(function two(1, 2) {
+  });
+  ````
+  
+*  Function declarations are hoisted. This allows you to call functions that are defined later.
+
+  ````javascript
+  function one(name) {
+    two();
+    function two() {
+    }
+  }
+  ````
+  
+  `var` declarations are also hoisted, but their assignments are not.
+
+  ````javascript
+  function one(name) {
+    two(); // two is undefined
+    var two = function () {
+    }
+  }
+  ````
+
+* You can pass functions any number of arguments and the compiler will not complain. You can use the special keyword `arguments`, which is similar to an array, to inspect arguments passed into a function. To enforce arity you can check the length of `arguments`. You can assign default values using `||`.
+
+  ````javascript
+  function greet(name) {
+    var name = name || "Mohamad";
+    return "Hello, " + name;
+  }
+  ````
+  
+* `'use strict';` or strict mode, enables more warnings and forces you to use a cleaner syntax. It can be declared within `script` tags, and even inside a function.
+
 
