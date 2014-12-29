@@ -155,4 +155,131 @@ Some useful things to remember from this chapter.
   
 * `'use strict';` or strict mode, enables more warnings and forces you to use a cleaner syntax. It can be declared within `script` tags, and even inside a function.
 
+* JavaScript has no block level scope. Instead, it keeps a function scope, and this can be a major source of pain unless you are familiar with this subtlety. 
 
+  ````javascript
+  var funcs = [];
+  for (var i = 0; i < 5; i++) {
+    funcs.push(function () {
+      return i;
+    });
+  }
+  funcs[1]();
+  5 // returns 5 instead of 1
+  ````
+  
+  The above code will return 5 instead of 1 because the closure will return the current value of the variable, which will be 5 when the loop terminates, and not the value of the variable at the time of the function creation. To avoid this we can use an IIFE, or an *immediately invoked function expression*.
+  
+  ````javascript
+  var funcs = [];
+  for (var i = 0; i < 5; i++) {
+    (function () {
+      funcs.push(function() {
+        return i;
+      });
+    }());
+  }
+  funcs[1]();
+  1
+  ````
+  
+* Objects in JavaScript are typicall key value pairs. The key is a string, and values any JavaScript value, including methods. Objects have automatic getter and setter methods. 
+
+  ````javascript
+  var mohamad = {
+    name: "Mohamad",
+    description: function () {
+      return "This is " + this.name;
+    }
+  };
+  mohamad.description(); // This is Mohamad
+  mohamad.description    // a string representation of the function
+  mohamad.name()         // Uncaught TypeError: string is not a function
+  mohamad.name           // "Mohamad"
+  mohamad.age            // undefined
+  ````
+  
+  You can set properties arbitarily too.
+  
+  ````javascript
+  mohamad.age = 33;
+  mohamad.age; // 33
+  ````
+
+  The `in` operator checks if a property exists.
+  
+  ````javascript
+  'age' in mohamad;     // true
+  'height' in mohamad;  // false
+  ````
+
+  The `delete` operator deletes a property. If the property does not exist, nothing happens.
+  
+  ````javascript
+  delete mohamad.age;
+  ````
+
+  Property keys can be set arbitary strings, or none-identifiers. We must use square brackets.
+  
+  ````javascript
+  var mohamad = { 'my mental age': 33 };
+  mohamad['my mental age']; // 33
+  mohamad['my mental age'] = 12;
+  ````
+  Square brackets allow us to compute key names.
+  
+  ````javascript
+  mohamad['my mental ' + 'age']; // 12
+  ````
+  
+  We can extract methods from objects, but they lose their connection to the object.
+  
+  ````javascript
+  var description = mohamad.description;
+  description();
+  TypeError: Cannot read property 'name' of undefined
+  ````
+  
+  To avoid this we can use `bind()`, which creates a new method that has a value for `this`.
+  
+  ````javascript
+  var description = mohamad.description.bind(mohamad);
+  description(); // "This is Mohamad"
+  ````
+  
+* Functions have the `this` keyword, which can be inconvenient when nesting functions, since `this` will change context. The following example will not work because `this.name` will return undefined, since it refers to the function within the loop, and not the outer function.
+
+  ````javascript
+  var oscar = {
+    name: "Mohamad",
+    friends: ["Ali", "Hassan"],
+    sayHi: function() {
+      this.friends.forEach(function (friend) {
+        console.log(this.name + " says hello to " + friend);
+      });
+    }
+  }
+  ````
+
+  A common way to fix this is by saving this to a variable before the inner function executes, since inner functions have access to their parent scope.
+  
+  ````javascript
+    sayHi: function() {
+      var that = this;
+      this.friends.forEach(function (friend) {
+        console.log(that.name + " says hello to " + friend);
+      });
+    }
+  ```
+  
+  Or, in this case, `forEach` accepts a second argument for the value of `this`.
+
+  ````javascript
+    sayHi: function() {
+      this.friends.forEach(function (friend) {
+        console.log(that.name + " says hello to " + friend);
+      }, this);
+    }
+  ```
+  
+  
