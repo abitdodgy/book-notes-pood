@@ -281,5 +281,18 @@ Some useful things to remember from this chapter.
       }, this);
     }
   ```
+
+* Functions in JavaScript can also be constructors for new objects. Constructors have two parts, the first which sets up instance data, and the second
+
+  ````javascript
+  var Mohamad(name, age) {
+    this.name = name;
+    this.age = age;
+  };
+  
+  Mohamad.prototype.greet = function () {
+    return "Hello, " + this.name;
+  };
+  ````
   
   
