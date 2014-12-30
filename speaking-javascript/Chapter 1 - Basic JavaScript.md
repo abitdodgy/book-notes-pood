@@ -1,4 +1,4 @@
-### Chapter 1 - Basic JavaScript
+### Part 1 - Basic JavaScript
 
 Some useful things to remember from this chapter.
 
