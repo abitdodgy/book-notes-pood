@@ -317,5 +317,10 @@ Some useful things to remember from this chapter.
 * Finally, always use `return`. Those used to working with Ruby will do well to remember using `return`.
 
 
+This [JSFiddle][1] contains some sample code used in this document.
+
+  [1]: http://jsfiddle.net/02bp17p2/
+
+
   
   
