@@ -282,7 +282,7 @@ Some useful things to remember from this chapter.
     }
   ```
 
-* Functions in JavaScript can also be constructors for new objects. Constructors have two parts, the first which sets up instance data, and the second
+* Functions in JavaScript can also be constructors for new objects. Creating a new object has two parts. First the construtor sets up instance data, and second the object prototype sets methods. The data of the constructor is specific to each instance, while the object prototype methods are inherited by all instances of the class.
 
   ````javascript
   var Mohamad(name, age) {
@@ -290,9 +290,32 @@ Some useful things to remember from this chapter.
     this.age = age;
   };
   
-  Mohamad.prototype.greet = function () {
-    return "Hello, " + this.name;
+  Mohamad.prototype.greet = function (name) {
+    return this.name + " says hello to " + name;
   };
-  ````
+  
+  var mohamad = new Mohamad("Mohamad", 33);
+  mohamad.greet("Mario");
+  ```
+  
+* If you work with Ruby, JavaScript iteration will be slightly different since JavaScript does not use blocks. But anonymous functions are similar enough.
+
+  ```javascript
+  ["apples", "bananas", "oranges"].forEach(function (element, index) {
+    console.log(element + " is at index " +  index);
+  });
+  ```
+  
+  Another example using `map`.
+  
+  ```javascript
+  ["apple", "banana", "orange"].map(function (element) {
+    element + "s"
+  });
+  ```
+
+* Finally, always use `return`. Those used to working with Ruby will do well to remember using `return`.
+
+
   
   
